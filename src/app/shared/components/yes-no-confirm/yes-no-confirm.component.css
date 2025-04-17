@@ -1,0 +1,7 @@
+.action-icon{
+    height:17px!important;
+    font-size: 1rem !important;
+}
+.card-header,.card-footer{
+    padding: 1rem 1.5rem;
+}

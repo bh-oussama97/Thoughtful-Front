@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="card-title">Add Category</h5>
+
+      <button mat-icon-button class="small" (click)="this.dialogRef.close()">
+        <i class="material-icons fs-4">close</i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div  *ngIf="isLoading" class="d-flex justify-content-center">
+      <div class="spinner-border " role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div  *ngIf="!isLoading" class="form-row">
+      <div class="form-group ">
+        <label for="categorySelect" class="fw-bold">Select category</label>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <select [(ngModel)]="categorySelected" class="form-control w-25">
+            <option [ngValue]="null" disabled selected>Choose ...</option>
+            <option *ngFor="let category of categories" [ngValue]="category">
+              {{ category.name }}
+            </option>
+          </select>
+          <button type="button" class="btn btn-success" (click)="save()" [disabled]="!categorySelected">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <p-toast />
+
+  </div>
+</div>

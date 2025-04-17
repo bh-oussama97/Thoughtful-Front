@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark header">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/articles']">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"[routerLink]="['/blogs']">Blogs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/authors']">Authors</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav flex-grow">
+        <li class="nav-item" *ngIf="!user">
+          <a [routerLink]="['/register']" class="nav-link text-white">
+            Register <i class="fa fa-user-circle" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="!user">
+          <a [routerLink]="['/login']" class="nav-link text-white">
+            Login <i class="fa fa-sign-in" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="user">
+          <span class="nav-link text-white">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Welcome, {{ user.userName }} 
+          </span>
+        </li>
+
+        <li class="nav-item" *ngIf="user">
+          <a href="" class="nav-link text-white" (click)="logout()">
+             <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="card-title">Article Details</h5>
+
+      <button mat-icon-button class="small" (click)="this.dialogRef.close()">
+        <i class="material-icons fs-4">close</i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div class="container">
+        <div class="row">
+          <div class="col-3 fw-bold">Title :</div>
+          <div class="col-9">
+            {{ data.title }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 fw-bold">Subtitle :</div>
+          <div class="col-9">
+            {{ data.subtitle }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 fw-bold">Author :</div>
+          <div class="col-9">
+            {{ data.author.name }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 fw-bold">Categories :</div>
+          <div class="col-9" *ngIf="data.category">
+            {{ data.category.name }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 fw-bold">Date Created :</div>
+          <div class="col-9">
+            {{ data.dateCreated | date : "dd/MM/yyyy" }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 fw-bold">Number of Likes :</div>
+          <div class="col-9">
+            {{ data.numberOfLikes }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 fw-bold">Number of Shares :</div>
+          <div class="col-9">
+            {{ data.numberOfShares }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 fw-bold">Body :</div>
+          <div class="col-9">
+            {{ data.body }}
+          </div>
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</div>

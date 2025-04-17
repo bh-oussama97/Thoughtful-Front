@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"; // in official docs
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+.footer {
+  height: 200px;
+}
+
+.footer a {
+  color: white;
+}
+
+.header {
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+    margin-left: -30px;
+  }
+
+  100% {
+    margin-left: 0px;
+    opacity: 1;
+  }
+}
+
+.body-background {
+  background-color: #edf1f7;
+  min-height: 72vh;
+  max-height: 200vh;
+}
+
+.dialog-default {
+  .mat-dialog-container {
+    padding: 0 !important;
+  }
+
+  nb-card {
+    margin-bottom: 0 !important;
+  }
+}
+
+select.form-control {
+  appearance: auto;
+}
+
+select.form-control {
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+  appearance: menulist;
+}
+
+.grid-container {
+  display: grid;
+  place-items: center; /* Centers both horizontally and vertically */
+  height: 50vh; /* Full viewport height */
+  width: 100%; /* Full width */
+}
+
+.form {
+  display: flex;
+  gap: 20px;
+  row-gap: 20px;
+  column-gap: 20px;
+  flex-direction: column;
+  width: 50%; /* Adjust form width as needed */
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+
+.content-center{
+  display: flex;
+  justify-content:center;
+}

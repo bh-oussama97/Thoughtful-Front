@@ -1,0 +1,62 @@
+<div class="card" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <div class="card-header" cdkDragHandle>
+    <div class="d-flex">
+      <span class="material-symbols-outlined text-primary"> info </span>
+      <h6 class="ms-2 fw-bold mb-0">{{ data.title }}</h6>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="p-2 mx-50">
+      <span *ngIf="formatMessageAsList === true; else formatMessageAsText">
+        <ol *ngIf="message.length > 1">
+          <li *ngFor="let msg of message | slice : 0" class="mb-1">
+            {{ msg }}
+          </li>
+        </ol>
+      </span>
+      <ng-template #formatMessageAsText>
+        <p *ngIf="message.length > 1" class="mb-1">{{ message[0] }}</p>
+        <span *ngIf="message.length > 1">
+          <p *ngFor="let msg of message | slice : 1" class="mb-1">
+            {{ msg }}
+          </p>
+        </span>
+      </ng-template>
+      <p *ngIf="message.length === 1">{{ message[0] }}</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="d-flex justify-content-end">
+      <button
+        class="btn btn-secondary btn-lg"
+        (click)="onNoClick()"
+        *ngIf="data.yesDisabled"
+      >
+        <div class="d-flex align-items-center">
+          <span class="material-symbols-outlined fs-6"> check </span>
+          <span class="ms-2 fw-bold">OK</span>
+        </div>
+      </button>
+      <button
+        class="btn btn-primary btn-sm"
+        (click)="onYesClick()"
+        *ngIf="!data.yesDisabled"
+      >
+        <div class="d-flex align-items-center">
+          <span class="material-symbols-outlined fs-6"> check </span>
+          <span class="ms-2 fw-bold">YES</span>
+        </div>
+      </button>
+      <button
+        class="btn btn-light border border-secondary btn-sm ms-3"
+        (click)="onNoClick()"
+        *ngIf="!data.yesDisabled"
+      >
+        <div class="d-flex align-items-center">
+          <mat-icon class="action-icon">close</mat-icon>
+          <span class="ms-2 fw-bold">NO</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
