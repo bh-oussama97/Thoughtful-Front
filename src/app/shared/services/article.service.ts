@@ -35,4 +35,10 @@ export class ArticleService {
     return this.httpClient.post<ResultResponse<ArticleGetDto>>(environment.apiEndpoint +"/Article/CreateArticle",articleDto);
 
   }
+  
+  updateArticle(articleDto:ArticleDTO,articleId:number):Observable<ResultResponse<ArticleGetDto>>
+  {
+    return this.httpClient.put<ResultResponse<ArticleGetDto>>(environment.apiEndpoint +"/Article/UpdateArticle?id="+articleId,articleDto);
+
+  }
 }

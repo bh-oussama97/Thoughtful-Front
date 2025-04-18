@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MessageService } from 'primeng/api';
 import { ArticleDTO } from 'src/app/shared/models/article-dto';
 import { ArticleGetDto } from 'src/app/shared/models/article-get-dto';
@@ -12,50 +12,57 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 
 @Component({
-  selector: 'app-add-article-modal',
-  templateUrl: './add-article-modal.component.html',
-  styleUrls: ['./add-article-modal.component.scss'],
+  selector: 'app-edit-article-modal',
+  templateUrl: './edit-article-modal.component.html',
+  styleUrls: ['./edit-article-modal.component.scss'],
 })
-export class AddArticleModalComponent implements OnInit {
+export class EditArticleModalComponent implements OnInit {
+  request: ArticleDTO ;
   authors: AuthorGetDto[] = [];
-  authorSelected: AuthorGetDto = null;
+  authorSelected: AuthorGetDto ;
 
   isLoading: boolean = false;
   categories: CategoryGetDto[] = [];
-
-  request: ArticleDTO;
-  categorySelected: CategoryGetDto = null;
+  categorySelected: CategoryGetDto ;
 
   constructor(
-    public dialogRef: MatDialogRef<AddArticleModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { articleSelected: ArticleGetDto },
     private authorservice: AuthorService,
     private dialogService: DialogService,
     private articleService: ArticleService,
     private messageService: MessageService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    public dialogRef: MatDialogRef<EditArticleModalComponent>
   ) {}
   ngOnInit(): void {
-    this.request = this.initiateRequest();
     this.loadAuthors();
     this.loadCategories();
+    this.request = this.initiateRequest();
   }
+
   initiateRequest(): ArticleDTO {
     return {
-      Title: '',
-      Subtitle: '',
-      Body: '',
-      AuthorId: null,
-      CategoryId: null,
-      NumberOfLikes: null,
-      NumberOfShares: null,
+      Title: this.data.articleSelected.title,
+      Subtitle:  this.data.articleSelected.subtitle,
+      Body:  this.data.articleSelected.body,
+      AuthorId:  this.data.articleSelected.authorId,
+      CategoryId:  this.data.articleSelected.category.id,
+      NumberOfLikes:  this.data.articleSelected.numberOfLikes,
+      NumberOfShares:  this.data.articleSelected.numberOfShares,
     };
   }
+
   loadAuthors() {
     this.authorservice
       .loadAuthors()
       .subscribe((response: ResultResponse<AuthorGetDto[]>) => {
         if (response.isSuccess === true) {
           this.authors = response.body;
+          if (this.authors) {
+            this.authorSelected = this.authors.find(
+              (c) => c.id === this.data.articleSelected.author.id
+            );
+          }
         } else {
           this.dialogService.openServerErrorDialog(
             response.error.message,
@@ -70,37 +77,21 @@ export class AddArticleModalComponent implements OnInit {
       .subscribe((response: ResultResponse<CategoryGetDto[]>) => {
         if (response.isSuccess === true) {
           this.categories = response.body;
-        } else {
-          this.dialogService.openServerErrorDialog(
-            response.error.message,
-            response.error.code
-          );
-        }
-      });
-  }
-  save() {
-    this.isLoading = true;
-    console.log('request', this.request);
-    this.articleService
-      .addArticle(this.request)
-      .subscribe((response: ResultResponse<ArticleGetDto>) => {
-        if (response.isSuccess === true) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Article has been added successfully',
-          });
-          this.dialogRef.close(true);
-        } else {
-          this.dialogService.openServerErrorDialog(
-            response.error.message,
-            response.error.code
-          );
-        }
-        this.isLoading = true;
-      });
-  }
+          if(this.categories)
+          {
+            this.categorySelected = this.categories.find(
+              (c) => c.id === this.data.articleSelected.category.id
+            );
+          }
 
+        } else {
+          this.dialogService.openServerErrorDialog(
+            response.error.message,
+            response.error.code
+          );
+        }
+      });
+  }
   isValid(): boolean {
     return (
       this.request.Title !== '' &&
@@ -111,6 +102,24 @@ export class AddArticleModalComponent implements OnInit {
       this.request.NumberOfLikes !== null &&
       this.request.NumberOfShares !== null
     );
+  }
+  save() {
+    console.log(" this.request",);
+    this.articleService.updateArticle(this.request,this.data.articleSelected.id).subscribe((result:ResultResponse<ArticleGetDto>)=>{
+      if(result.isSuccess)
+      {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Article has been updated successfully',
+        });
+        this.dialogRef.close(true);
+      }
+      else{
+        this.dialogService.openServerErrorDialog(result.error.message,result.error.code);
+      }
+    })
+    
   }
   onAuthorChange() {
     if (this.authorSelected !== null) {

@@ -18,6 +18,7 @@ import { YesNoConfirmComponent } from 'src/app/shared/components/yes-no-confirm/
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { AddArticleModalComponent } from '../add-article-modal/add-article-modal.component';
+import { EditArticleModalComponent } from '../edit-article-modal/edit-article-modal.component';
 
 @Component({
   selector: 'app-articles-list',
@@ -110,7 +111,21 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
-  EditArticle(articleId: number) {}
+  EditArticle(element) {
+    this.dialog
+    .open(EditArticleModalComponent, {
+      panelClass: 'dialog-default',
+      width: '600px',
+      disableClose: true,
+      autoFocus: false,
+      data: { articleSelected: element },
+    }).afterClosed()
+    .subscribe((result) => {
+      if (result) {
+        this.loadArticles();
+      }
+    });
+  }
   addCategory(element) {
     this.dialog
       .open(AddCategoryArticleModalComponent, {
