@@ -19,6 +19,7 @@ import { AddCategoryArticleModalComponent } from './articles/add-category-articl
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AddAuthorArticleModalComponent } from './articles/add-author-article-modal/add-author-article-modal.component';
+import { AddArticleModalComponent } from './articles/add-article-modal/add-article-modal.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
@@ -39,7 +40,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     AuthorsListComponent,
     ArticleDetailsModalComponent,
     AddCategoryArticleModalComponent,
-    AddAuthorArticleModalComponent
+    AddAuthorArticleModalComponent,
+    AddArticleModalComponent
   ],
   imports: [
     BrowserModule,

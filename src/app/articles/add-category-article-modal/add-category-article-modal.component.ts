@@ -15,7 +15,7 @@ import { MessageService } from 'primeng/api';
 })
 export class AddCategoryArticleModalComponent implements OnInit {
   categories: CategoryGetDto[] = [];
-  categorySelected: any;
+  categorySelected: CategoryGetDto = null;
   isLoading: boolean = false;
   timer:any=0;
 

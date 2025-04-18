@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { ArticleGetDto } from '../models/article-get-dto';
 import { ResultResponse } from '../models/result-response';
+import { ArticleDTO } from '../models/article-dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +28,11 @@ export class ArticleService {
   }
   deleteArticle(articleId:number):Observable<ResultResponse<string>>{
     return this.httpClient.delete<ResultResponse<string>>(environment.apiEndpoint +"/Article/DeleteArticle?id="+articleId);
+
+  }
+
+  addArticle(articleDto:ArticleDTO):Observable<ResultResponse<ArticleGetDto>>{
+    return this.httpClient.post<ResultResponse<ArticleGetDto>>(environment.apiEndpoint +"/Article/CreateArticle",articleDto);
 
   }
 }

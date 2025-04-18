@@ -17,6 +17,7 @@ import { AddAuthorArticleModalComponent } from '../add-author-article-modal/add-
 import { YesNoConfirmComponent } from 'src/app/shared/components/yes-no-confirm/yes-no-confirm.component';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'src/app/shared/services/dialog.service';
+import { AddArticleModalComponent } from '../add-article-modal/add-article-modal.component';
 
 @Component({
   selector: 'app-articles-list',
@@ -127,10 +128,12 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
       });
   }
   deleteArtikel(articleId: number) {
+    console.log("deleteArtikel",articleId);
+    
     this.dialog
       .open(YesNoConfirmComponent, {
         data: {
-          message: `Are you sure to permanently delete article with id :'${articleId}'?`,
+          message: `Are you sure you want to delete article with id ${articleId} ?`,
           title: `Article deletion`,
           yesDisabled: false,
         },
@@ -141,7 +144,7 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
         // do nothing
         if (msg === true) {
           this.articleService
-            .deleteArticle(10)
+            .deleteArticle(articleId)
             .subscribe((response: ResultResponse<string>) => {
               if (response.isSuccess) {
                 this.messageService.add({
@@ -174,6 +177,20 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
+          this.loadArticles();
+        }
+      });
+  }
+  addArticle(){
+    this.dialog
+      .open(AddArticleModalComponent, {
+        panelClass: 'dialog-default',
+        width: '600px',
+        disableClose: true,
+        autoFocus: false,
+      }).afterClosed().subscribe((result)=>{
+        if(result)
+        {
           this.loadArticles();
         }
       });
