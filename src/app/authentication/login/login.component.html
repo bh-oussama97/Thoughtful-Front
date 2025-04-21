@@ -4,7 +4,7 @@
         <label for="exampleInputEmail1">Email address</label>
         <input
           type="text"
-          class="form-control bg-light"
+          class="form-control bg-light mt-2 "
           [(ngModel)]="selectedEmail"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
@@ -12,18 +12,32 @@
           name="email" 
         />
       </div>
+   
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input
-          type="password"
-          class="form-control bg-light"
-          [(ngModel)]="selectedPassword"
-          id="exampleInputPassword1"
-          placeholder="Password"
-          name="password" 
-        />
+        <label for="email">Password</label>
+        <div class="input-group">
+          <input placeholder="Enter password"
+            [type]="fieldTextType ? 'text' : 'password'"
+            class="form-control bg-light mt-2"
+            [(ngModel)]="selectedPassword"
+            name="password" 
+          />
+          <div class="input-group-append mt-2 d-flex">
+            <span class="input-group-text">
+              <i
+                class="fa"
+                [ngClass]="{
+                  'fa-eye-slash': !fieldTextType,
+                  'fa-eye': fieldTextType
+                }"
+                (click)="toggleFieldTextType()"
+              ></i>
+            </span>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary d-flex align-self-end">
+      <button type="button" class="btn btn-primary d-flex align-self-end" 
+      (click)="login()">
         <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         <span *ngIf="isLoading" class="sr-only">Submit</span>
         <span *ngIf="!isLoading">Submit </span>

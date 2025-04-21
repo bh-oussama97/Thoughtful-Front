@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   selectedPassword: string = '';
   isLoading: boolean = false;
   timer: any = 0;
-
+  fieldTextType: boolean = false;
   constructor(
     private usersService: UsersService,
     private router: Router,
@@ -53,5 +53,8 @@ export class LoginComponent implements OnInit {
           });
       }
     }, 2000);
+  }
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 }

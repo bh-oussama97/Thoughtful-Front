@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success header">
   <div class="container-fluid">
     <button
       class="navbar-toggler"
@@ -11,43 +11,73 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse p-1" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/articles']">Articles</a>
+          <img
+            src="../../../../assets/images/blog-logo.png"
+            class="logo-width me-3 d-none d-lg-block"
+          />
         </li>
         <li class="nav-item">
-          <a class="nav-link"[routerLink]="['/blogs']">Blogs</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            [routerLink]="['/articles']"
+            >Articles</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/blogs']">Blogs</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/authors']">Authors</a>
         </li>
       </ul>
 
-      <ul class="navbar-nav flex-grow align-items-center">
+      <ul class="navbar-nav flex-grow">
         <li class="nav-item" *ngIf="!user">
-          <a [routerLink]="['/register']" class="nav-link text-white">
-            Register <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <a
+            [routerLink]="['/register']"
+            class="nav-link text-white d-flex align-items-center"
+          >
+            Register
+            <i
+              class="fa fa-user-circle d-none d-lg-block ms-2"
+              aria-hidden="true"
+            ></i>
           </a>
         </li>
 
         <li class="nav-item" *ngIf="!user">
-          <a [routerLink]="['/login']" class="nav-link text-white">
-            Login <i class="fa fa-sign-in" aria-hidden="true"></i>
+          <a
+            [routerLink]="['/login']"
+            class="nav-link text-white d-flex align-items-center"
+          >
+            Login
+            <i
+              class="fa fa-sign-in d-none d-lg-block ms-2"
+              aria-hidden="true"
+            ></i>
           </a>
         </li>
 
-        <li class="nav-item" *ngIf="user">
-          <span class="nav-link text-white">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            Welcome, {{ user.userName }} 
-          </span>
-        </li>
+        <li
+          class="nav-item text-white d-none d-lg-flex align-items-center gap-2"
+          *ngIf="user"
+        >
+          <i class="fa fa-user" aria-hidden="true"></i>
+          Welcome, {{ user.userName }}
 
-        <li class="nav-item" *ngIf="user">
           <a href="" class="nav-link text-white" (click)="logout()">
-             <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
           </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <li class="nav-item d-lg-none" *ngIf="user">
+          <a class="nav-link text-white" (click)="logout()"> Logout </a>
         </li>
       </ul>
     </div>

@@ -5,6 +5,6 @@ export interface BlogGetDTO {
     id: number;
     name: string;
     description: string;
-    dateCreated: string;
+    createdDate: string;
     contributors: AuthorGetDto[];
 }
