@@ -80,7 +80,6 @@ export class AddArticleModalComponent implements OnInit {
   }
   save() {
     this.isLoading = true;
-    console.log('request', this.request);
     this.articleService
       .addArticle(this.request)
       .subscribe((response: ResultResponse<ArticleGetDto>) => {
@@ -97,7 +96,7 @@ export class AddArticleModalComponent implements OnInit {
             response.error.code
           );
         }
-        this.isLoading = true;
+        this.isLoading = false;
       });
   }
 

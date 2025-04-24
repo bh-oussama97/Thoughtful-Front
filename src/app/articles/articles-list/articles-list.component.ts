@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   Component,
-  inject,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -142,9 +141,7 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
         }
       });
   }
-  deleteArtikel(articleId: number) {
-    console.log("deleteArtikel",articleId);
-    
+  deleteArtikel(articleId: number) {    
     this.dialog
       .open(YesNoConfirmComponent, {
         data: {

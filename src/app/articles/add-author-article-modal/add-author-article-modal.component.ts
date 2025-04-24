@@ -36,8 +36,6 @@ export class AddAuthorArticleModalComponent implements OnInit {
       .subscribe((response: ResultResponse<AuthorGetDto[]>) => {
         if (response.isSuccess === true) {
           this.authors = response.body;
-          console.log('this.data', this.data);
-
           if (this.data) {
             this.authorSelected = this.authors.find(
               (c) => c.id === this.data.author.id

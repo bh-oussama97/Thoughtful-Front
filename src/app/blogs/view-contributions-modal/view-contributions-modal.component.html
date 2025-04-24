@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="card-title">Contributions</h5>
+
+      <button mat-icon-button class="small" (click)="this.dialogRef.close()">
+        <i class="material-icons fs-4">close</i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div  *ngIf="isLoading" class="d-flex justify-content-center">
+      <div class="spinner-border " role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading">
+      <div
+      *ngFor="let contrib of data.contributors"
+      class="mb-3 border p-3 rounded"
+    >
+      <p><strong>Note:</strong> {{ contrib.note }}</p>
+      <p>
+        <strong>Date:</strong>
+        {{ contrib.contributionDate | date : "dd/MM/yyyy" }}
+      </p>
+
+      <div
+        class="d-flex gap-2 cursor-pointer text-primary align-items-baseline"
+      >
+        <i class="fa fa-download"></i>
+        <a (click)="downloadFile(contrib.filename)">
+          <p>{{ contrib.filename }}</p>
+        </a>
+      </div>
+    </div>
+    <div *ngIf="this.data.contributors.length === 0">
+      No contributions available.
+    </div>
+    </div>
+
+  </div>
+</div>

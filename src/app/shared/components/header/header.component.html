@@ -16,22 +16,23 @@
         <li class="nav-item">
           <img
             src="../../../../assets/images/blog-logo.png"
-            class="logo-width me-3 d-none d-lg-block"
+            class="logo-width me-3 d-none d-lg-block cursor-pointer"
+            [routerLink]="['/home']"
           />
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
           <a
-            class="nav-link active"
+            class="nav-link  "
             aria-current="page"
             [routerLink]="['/articles']"
             >Articles</a
           >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/blogs']">Blogs</a>
+        <li class="nav-item ">
+          <a class="nav-link  " [routerLink]="['/blogs']">Blogs</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/authors']">Authors</a>
+        <li class="nav-item ">
+          <a class="nav-link  " [routerLink]="['/authors']">Authors</a>
         </li>
       </ul>
 
@@ -39,7 +40,7 @@
         <li class="nav-item" *ngIf="!user">
           <a
             [routerLink]="['/register']"
-            class="nav-link text-white d-flex align-items-center"
+            class="nav-link   d-flex align-items-center"
           >
             Register
             <i
@@ -52,7 +53,7 @@
         <li class="nav-item" *ngIf="!user">
           <a
             [routerLink]="['/login']"
-            class="nav-link text-white d-flex align-items-center"
+            class="nav-link   d-flex align-items-center"
           >
             Login
             <i

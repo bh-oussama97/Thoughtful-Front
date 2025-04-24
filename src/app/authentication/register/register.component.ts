@@ -16,11 +16,15 @@ export class RegisterComponent implements OnInit{
  
   registrationForm : FormGroup;
   isLoading:boolean=false;
+  timer: any = 0;
+  fieldTextType: boolean = false;
+
   constructor(private dialogService:DialogService,private fb:FormBuilder,private userService:UsersService,private router:Router){
     this.registrationForm   = this.fb.group({
       username : new FormControl('',[Validators.required]),
-      password : new FormControl('',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[\$\.,])(?=.*\d)[A-Za-z\d\$\.,]{11}$/)]),
-      confirmPassword : new FormControl('',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[\$\.,])(?=.*\d)[A-Za-z\d\$\.,]{11}$/)]),
+      password : new FormControl('',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[\$\.,])(?=.*\d)[A-Za-z\d\$\.,]{11,}$/)      ]),
+      confirmPassword : new FormControl('',[Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[\$\.,])(?=.*\d)[A-Za-z\d\$\.,]{11,}$/)
+      ]),
       email : new FormControl('',[Validators.required,Validators.email])
     },{ validators: this.passwordMatchValidator });
 
@@ -29,7 +33,6 @@ export class RegisterComponent implements OnInit{
   }
   onRegisterSubmit(event)
   {
-    this.register();
     if (event.keyCode === 13) {
       this.register();
     }
@@ -41,20 +44,27 @@ export class RegisterComponent implements OnInit{
       password:this.registrationForm.get('password').value,
       email:this.registrationForm.get('email').value
     };
-    this.userService.register(userRegisterBody).subscribe((response:ResultResponse<UserGetDTO>)=>{
-      if(response.isSuccess===true)
-      {
-        this.router.navigate(['login']);
-      }
-      else{
-        this.dialogService.openServerErrorDialog(response.error.message,response.error.code);
-      }
-      this.isLoading = false;
-    });
+    this.timer = setTimeout(() => {
+      this.userService.register(userRegisterBody).subscribe((response:ResultResponse<UserGetDTO>)=>{
+        if(response.isSuccess===true)
+        {
+          this.router.navigate(['login']);
+          this.isLoading = false;
+        }
+        else{
+          this.dialogService.openServerErrorDialog(response.error.message,response.error.code);
+          this.isLoading = false;
+        }
+      });
+    },2000);
+
   }
   passwordMatchValidator(group: FormGroup) {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
+  }
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 }

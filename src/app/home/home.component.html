@@ -1,0 +1,28 @@
+<h2>Overview</h2>
+<p>
+  <strong>ThoughtFul</strong> is a basic application for a blogging platform,
+  designed using <strong>.NET 6 WEB API</strong> style. It's clean, modern, and
+  built for developers who value simplicity and vertical feature organization.
+</p>
+
+<h2>Architecture Highlights</h2>
+<ul>
+  <li>Vertical slices architecture (feature-based organization)</li>
+  <li>CQRS pattern using <code>MediatR</code></li>
+  <li>Auto-registered modules per feature</li>
+  <li>DTO mapping with <code>AutoMapper</code></li>
+  <li>Rich domain model (to a degree)</li>
+  <li>
+    No repositories or service layers – logic in <code>IRequestHandler</code>
+  </li>
+</ul>
+
+<h2>Getting Started</h2>
+<ol>
+  <li>Provide a connection string in <code>appsettings.json</code></li>
+  <li>
+    Run the following to apply migrations:
+    <pre><code>Update-Database</code></pre>
+  </li>
+  <li>Run the application</li>
+</ol>

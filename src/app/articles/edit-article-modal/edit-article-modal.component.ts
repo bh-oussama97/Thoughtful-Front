@@ -104,7 +104,6 @@ export class EditArticleModalComponent implements OnInit {
     );
   }
   save() {
-    console.log(" this.request",);
     this.articleService.updateArticle(this.request,this.data.articleSelected.id).subscribe((result:ResultResponse<ArticleGetDto>)=>{
       if(result.isSuccess)
       {

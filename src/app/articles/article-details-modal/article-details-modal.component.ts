@@ -14,7 +14,6 @@ export class ArticleDetailsModalComponent implements OnInit{
     public data: ArticleGetDto,
     public dialogRef: MatDialogRef<ArticleDetailsModalComponent>,
   ){
-    console.log("data",data)
   }
   ngOnInit(): void {
   }

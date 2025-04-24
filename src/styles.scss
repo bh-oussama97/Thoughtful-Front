@@ -30,10 +30,20 @@
   }
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .body-background {
   background-color: #edf1f7;
-  min-height: 100vh;
-  max-height: 200vh;
+  flex: 1;
 }
 
 .dialog-default {
@@ -80,4 +90,8 @@ th.mat-sort-header-sorted {
 .content-center{
   display: flex;
   justify-content:center;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }

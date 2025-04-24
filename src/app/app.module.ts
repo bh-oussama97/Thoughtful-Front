@@ -10,7 +10,7 @@ import { AuthorsListComponent } from './authors/authors-list/authors-list.compon
 import { BlogsListComponent } from './blogs/blogs-list/blogs-list.component';
 import { ArticleDetailsModalComponent } from './articles/article-details-modal/article-details-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizationInterceptor } from './shared/interceptors/authorization.interceptor';
@@ -21,6 +21,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { AddAuthorArticleModalComponent } from './articles/add-author-article-modal/add-author-article-modal.component';
 import { AddArticleModalComponent } from './articles/add-article-modal/add-article-modal.component';
 import { EditArticleModalComponent } from './articles/edit-article-modal/edit-article-modal.component';
+import { AddContributionModalComponent } from './blogs/add-contribution-modal/add-contribution-modal.component';
+import { ViewContributionsModalComponent } from './blogs/view-contributions-modal/view-contributions-modal.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './home/home.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
@@ -43,7 +47,10 @@ const JWT_Module_Options: JwtModuleOptions = {
     AddCategoryArticleModalComponent,
     AddAuthorArticleModalComponent,
     AddArticleModalComponent,
-    EditArticleModalComponent
+    EditArticleModalComponent,
+    AddContributionModalComponent,
+    ViewContributionsModalComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -53,14 +60,15 @@ const JWT_Module_Options: JwtModuleOptions = {
     CommonModule,
     ReactiveFormsModule,
     JwtModule.forRoot(JWT_Module_Options),
-    ToastModule 
+    ToastModule ,
+    FontAwesomeModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,
       multi: true,
-    },MessageService,ConfirmationService
+    },MessageService,ConfirmationService,DatePipe
   ],
   bootstrap: [AppComponent]
 })

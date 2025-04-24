@@ -1,7 +1,7 @@
 <div class="card" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
   <div class="card-header" cdkDragHandle>
     <div class="d-flex">
-      <span class="material-symbols-outlined text-primary"> info </span>
+      <mat-icon class="text-primary fs-4">info_outline</mat-icon>
       <h6 class="ms-2 fw-bold mb-0">{{ data.title }}</h6>
     </div>
   </div>
@@ -33,7 +33,7 @@
         *ngIf="data.yesDisabled"
       >
         <div class="d-flex align-items-center">
-          <span class="material-symbols-outlined fs-6"> check </span>
+          <i class="fa fa-check"  aria-hidden="true"></i>
           <span class="ms-2 fw-bold">OK</span>
         </div>
       </button>
@@ -43,7 +43,7 @@
         *ngIf="!data.yesDisabled"
       >
         <div class="d-flex align-items-center">
-          <span class="material-symbols-outlined fs-6"> check </span>
+          <i class="fa fa-check"  aria-hidden="true"></i>
           <span class="ms-2 fw-bold">YES</span>
         </div>
       </button>

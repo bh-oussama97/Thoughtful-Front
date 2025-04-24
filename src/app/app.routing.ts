@@ -7,8 +7,13 @@ import { BlogsListComponent } from './blogs/blogs-list/blogs-list.component';
 import { AuthorsListComponent } from './authors/authors-list/authors-list.component';
 import { AuthGuardService } from './shared/guards/auth.guard';
 import { LoginGuard } from './shared/guards/login.guard';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  {
+    path:'home',
+    component : HomeComponent
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -31,7 +36,7 @@ const routes: Routes = [
     component: AuthorsListComponent,
     canActivate: [AuthGuardService],
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -53,6 +53,33 @@
           </td>
         </ng-container>
 
+        <ng-container matColumnDef="Id">
+          <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="px-2 fw-bold text-center"
+        >
+          Contributions
+        </th>
+        <td *matCellDef="let element" mat-cell class="px-2">
+          <div class="d-flex justify-content-center gap-3">
+            
+              <mat-icon class="mat-18 text-success cursor-pointer"
+              (click)="addcontrib(element)"
+              > add_circle_outline </mat-icon>
+
+
+            <mat-icon class="mat-18 text-primary cursor-pointer"
+            (click)="viewContributions(element)"
+            > visibility </mat-icon>
+
+  
+          </div>
+        
+        </td>
+        </ng-container>
+
   
         <tr mat-header-row *matHeaderRowDef="authorsColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: authorsColumns"></tr>
