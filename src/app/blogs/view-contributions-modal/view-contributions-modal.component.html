@@ -9,36 +9,38 @@
     </div>
   </div>
   <div class="card-body">
-    <div  *ngIf="isLoading" class="d-flex justify-content-center">
-      <div class="spinner-border " role="status">
+    <div *ngIf="isLoading" class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
 
     <div *ngIf="!isLoading">
       <div
-      *ngFor="let contrib of data.contributors"
-      class="mb-3 border p-3 rounded"
-    >
-      <p><strong>Note:</strong> {{ contrib.note }}</p>
-      <p>
-        <strong>Date:</strong>
-        {{ contrib.contributionDate | date : "dd/MM/yyyy" }}
-      </p>
-
-      <div
-        class="d-flex gap-2 cursor-pointer text-primary align-items-baseline"
+        *ngFor="let contrib of data.contributors"
+        class="mb-3 border p-3 rounded"
       >
-        <i class="fa fa-download"></i>
-        <a (click)="downloadFile(contrib.filename)">
-          <p>{{ contrib.filename }}</p>
-        </a>
+        <p>
+          <strong>Note:</strong>
+          {{ contrib.note }}
+        </p>
+        <p>
+          <strong>Date:</strong>
+          {{ contrib.contributionDate | date: "dd/MM/yyyy" }}
+        </p>
+
+        <div
+          class="d-flex gap-2 cursor-pointer text-primary align-items-baseline"
+        >
+          <i class="fa fa-download"></i>
+          <a (click)="downloadFile(contrib.filename)">
+            <p>{{ contrib.filename }}</p>
+          </a>
+        </div>
+      </div>
+      <div *ngIf="this.data.contributors.length === 0">
+        No contributions available.
       </div>
     </div>
-    <div *ngIf="this.data.contributors.length === 0">
-      No contributions available.
-    </div>
-    </div>
-
   </div>
 </div>

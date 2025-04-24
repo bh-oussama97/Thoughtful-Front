@@ -1,46 +1,55 @@
 <div class="grid-container">
-    <form class="form"  (keydown)="onSubmit($event)">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
+  <form class="form" (keydown)="onSubmit($event)">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="text"
+        class="form-control bg-light mt-2"
+        [(ngModel)]="selectedEmail"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        name="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Password</label>
+      <div class="input-group">
         <input
-          type="text"
-          class="form-control bg-light mt-2 "
-          [(ngModel)]="selectedEmail"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          name="email" 
+          placeholder="Enter password"
+          [type]="fieldTextType ? 'text' : 'password'"
+          class="form-control bg-light mt-2"
+          [(ngModel)]="selectedPassword"
+          name="password"
         />
-      </div>
-   
-      <div class="form-group">
-        <label for="email">Password</label>
-        <div class="input-group">
-          <input placeholder="Enter password"
-            [type]="fieldTextType ? 'text' : 'password'"
-            class="form-control bg-light mt-2"
-            [(ngModel)]="selectedPassword"
-            name="password" 
-          />
-          <div class="input-group-append mt-2 d-flex">
-            <span class="input-group-text">
-              <i
-                class="fa"
-                [ngClass]="{
-                  'fa-eye-slash': !fieldTextType,
-                  'fa-eye': fieldTextType
-                }"
-                (click)="toggleFieldTextType()"
-              ></i>
-            </span>
-          </div>
+        <div class="input-group-append mt-2 d-flex">
+          <span class="input-group-text">
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-eye-slash': !fieldTextType,
+                'fa-eye': fieldTextType
+              }"
+              (click)="toggleFieldTextType()"
+            ></i>
+          </span>
         </div>
       </div>
-      <button type="button" class="btn btn-primary d-flex align-self-end" 
-      (click)="login()">
-        <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        <span *ngIf="isLoading" class="sr-only">Submit</span>
-        <span *ngIf="!isLoading">Submit </span>
-      </button>
-    </form>
-  </div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary d-flex align-self-end"
+      (click)="login()"
+    >
+      <span
+        *ngIf="isLoading"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      <span *ngIf="isLoading" class="sr-only">Submit</span>
+      <span *ngIf="!isLoading">Submit</span>
+    </button>
+  </form>
+</div>

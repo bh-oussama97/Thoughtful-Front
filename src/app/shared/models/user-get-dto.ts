@@ -1,6 +1,6 @@
 export interface UserGetDTO {
-    id:string;
-    userName: string;
-    email: string;
-    token: string;
+  id: string;
+  userName: string;
+  email: string;
+  token: string;
 }

@@ -1,79 +1,92 @@
 <div class="grid-container">
-    <form class="form"  [formGroup]="registrationForm" (keydown)="onRegisterSubmit($event)">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="email"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            name="email" 
-          />
+  <form
+    class="form"
+    [formGroup]="registrationForm"
+    (keydown)="onRegisterSubmit($event)"
+  >
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="email"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        name="email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="username"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter username"
+        name="email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Password</label>
+      <div class="input-group">
+        <input
+          placeholder="Enter password"
+          [type]="fieldTextType ? 'text' : 'password'"
+          class="form-control bg-light mt-2"
+          formControlName="password"
+          name="password"
+        />
+        <div class="input-group-append mt-2 d-flex">
+          <span class="input-group-text">
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-eye-slash': !fieldTextType,
+                'fa-eye': fieldTextType
+              }"
+              (click)="toggleFieldTextType()"
+            ></i>
+          </span>
         </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="username"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Enter username"
-              name="email" 
-            />
-          </div>
-        <div class="form-group">
-          <label for="email">Password</label>
-          <div class="input-group">
-            <input placeholder="Enter password"
-              [type]="fieldTextType ? 'text' : 'password'"
-              class="form-control bg-light mt-2"
-              formControlName="password"
-              name="password" 
-            />
-            <div class="input-group-append mt-2 d-flex">
-              <span class="input-group-text">
-                <i
-                  class="fa"
-                  [ngClass]="{
-                    'fa-eye-slash': !fieldTextType,
-                    'fa-eye': fieldTextType
-                  }"
-                  (click)="toggleFieldTextType()"
-                ></i>
-              </span>
-            </div>
-          </div>
-          <div class="text-danger" *ngIf="registrationForm.get('password')?.hasError('pattern') && registrationForm.get('password')?.touched">
-            Password must be at least 11 characters long, include an uppercase letter, a special character ($, ., ,), and a number.
-          </div>
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          registrationForm.get('password')?.hasError('pattern') &&
+          registrationForm.get('password')?.touched
+        "
+      >
+        Password must be at least 11 characters long, include an uppercase
+        letter, a special character ($, ., ,), and a number.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Confirm password</label>
+      <div class="input-group">
+        <input
+          placeholder="Enter Confirm Password"
+          [type]="fieldTextType ? 'text' : 'password'"
+          class="form-control bg-light mt-2"
+          formControlName="confirmPassword"
+          name="password"
+        />
+        <div class="input-group-append mt-2 d-flex">
+          <span class="input-group-text">
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-eye-slash': !fieldTextType,
+                'fa-eye': fieldTextType
+              }"
+              (click)="toggleFieldTextType()"
+            ></i>
+          </span>
         </div>
-        <div class="form-group">
-          <label for="password">Confirm password</label>
-          <div class="input-group">
-            <input placeholder="Enter Confirm Password"
-              [type]="fieldTextType ? 'text' : 'password'"
-              class="form-control bg-light mt-2"
-              formControlName="confirmPassword"
-              name="password" 
-            />
-            <div class="input-group-append mt-2 d-flex">
-              <span class="input-group-text">
-                <i
-                  class="fa"
-                  [ngClass]="{
-                    'fa-eye-slash': !fieldTextType,
-                    'fa-eye': fieldTextType
-                  }"
-                  (click)="toggleFieldTextType()"
-                ></i>
-              </span>
-            </div>
-          </div>
+      </div>
 
-            <!-- <label for="exampleInputPassword1">Confirm password</label>
+      <!-- <label for="exampleInputPassword1">Confirm password</label>
             <input
               type="password"
               class="form-control"
@@ -82,17 +95,26 @@
               placeholder="Confirm Password"
               name="password" 
             /> -->
-            <div *ngIf="registrationForm.hasError('passwordMismatch')" class="text-danger">
-                Passwords do not match.
-              </div>
-          </div>
-        <button 
-        type="button" class="btn btn-primary d-flex align-self-end"
-        (click)="register()"
-        >
-          <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          <span *ngIf="isLoading" class="sr-only">Submit</span>
-          <span *ngIf="!isLoading">Register </span>
-        </button>
-      </form>
+      <div
+        *ngIf="registrationForm.hasError('passwordMismatch')"
+        class="text-danger"
+      >
+        Passwords do not match.
+      </div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary d-flex align-self-end"
+      (click)="register()"
+    >
+      <span
+        *ngIf="isLoading"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      <span *ngIf="isLoading" class="sr-only">Submit</span>
+      <span *ngIf="!isLoading">Register</span>
+    </button>
+  </form>
 </div>

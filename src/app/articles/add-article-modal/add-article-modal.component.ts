@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { MessageService } from 'primeng/api';
-import { ArticleDTO } from 'src/app/shared/models/article-dto';
-import { ArticleGetDto } from 'src/app/shared/models/article-get-dto';
-import { AuthorGetDto } from 'src/app/shared/models/author-get-dto';
-import { CategoryGetDto } from 'src/app/shared/models/category-get-dto';
-import { ResultResponse } from 'src/app/shared/models/result-response';
-import { ArticleService } from 'src/app/shared/services/article.service';
-import { AuthorService } from 'src/app/shared/services/author.service';
-import { CategoryService } from 'src/app/shared/services/category.service';
-import { DialogService } from 'src/app/shared/services/dialog.service';
+import { Component, OnInit } from "@angular/core";
+import { MatDialogRef } from "@angular/material/dialog";
+import { MessageService } from "primeng/api";
+import { ArticleDTO } from "src/app/shared/models/article-dto";
+import { ArticleGetDto } from "src/app/shared/models/article-get-dto";
+import { AuthorGetDto } from "src/app/shared/models/author-get-dto";
+import { CategoryGetDto } from "src/app/shared/models/category-get-dto";
+import { ResultResponse } from "src/app/shared/models/result-response";
+import { ArticleService } from "src/app/shared/services/article.service";
+import { AuthorService } from "src/app/shared/services/author.service";
+import { CategoryService } from "src/app/shared/services/category.service";
+import { DialogService } from "src/app/shared/services/dialog.service";
 
 @Component({
-  selector: 'app-add-article-modal',
-  templateUrl: './add-article-modal.component.html',
-  styleUrls: ['./add-article-modal.component.scss'],
+  selector: "app-add-article-modal",
+  templateUrl: "./add-article-modal.component.html",
+  styleUrls: ["./add-article-modal.component.scss"]
 })
 export class AddArticleModalComponent implements OnInit {
   authors: AuthorGetDto[] = [];
@@ -41,13 +41,13 @@ export class AddArticleModalComponent implements OnInit {
   }
   initiateRequest(): ArticleDTO {
     return {
-      Title: '',
-      Subtitle: '',
-      Body: '',
+      Title: "",
+      Subtitle: "",
+      Body: "",
       AuthorId: null,
       CategoryId: null,
       NumberOfLikes: null,
-      NumberOfShares: null,
+      NumberOfShares: null
     };
   }
   loadAuthors() {
@@ -85,9 +85,9 @@ export class AddArticleModalComponent implements OnInit {
       .subscribe((response: ResultResponse<ArticleGetDto>) => {
         if (response.isSuccess === true) {
           this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Article has been added successfully',
+            severity: "success",
+            summary: "Success",
+            detail: "Article has been added successfully"
           });
           this.dialogRef.close(true);
         } else {
@@ -102,9 +102,9 @@ export class AddArticleModalComponent implements OnInit {
 
   isValid(): boolean {
     return (
-      this.request.Title !== '' &&
-      this.request.Subtitle !== '' &&
-      this.request.Body !== '' &&
+      this.request.Title !== "" &&
+      this.request.Subtitle !== "" &&
+      this.request.Body !== "" &&
       this.request.AuthorId !== null &&
       this.request.CategoryId !== null &&
       this.request.NumberOfLikes !== null &&

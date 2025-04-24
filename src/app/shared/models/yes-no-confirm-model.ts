@@ -3,4 +3,4 @@ export interface YesNoConfirmModel {
   message: string | string[];
   yesDisabled: boolean;
   link?: string;
-  }
+}

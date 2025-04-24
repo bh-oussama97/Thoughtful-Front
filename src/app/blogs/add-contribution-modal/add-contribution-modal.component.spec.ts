@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AddContributionModalComponent } from './add-contribution-modal.component';
+import { AddContributionModalComponent } from "./add-contribution-modal.component";
 
-describe('AddContributionModalComponent', () => {
+describe("AddContributionModalComponent", () => {
   let component: AddContributionModalComponent;
   let fixture: ComponentFixture<AddContributionModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddContributionModalComponent ]
-    })
-    .compileComponents();
+      declarations: [AddContributionModalComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddContributionModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
