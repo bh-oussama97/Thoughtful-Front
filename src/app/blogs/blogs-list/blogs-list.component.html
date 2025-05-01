@@ -1,88 +1,97 @@
-<div class="card">
-  <h5 class="card-header">Blogs List</h5>
-
-  <div class="card-body content-center">
-    <div *ngIf="isBlogLoading" class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
+<div class="d-flex flex-column gap-2">
+  <button 
+  (click)="exportXLS()"
+  class="btn btn-outline-primary btn-sm d-flex align-items-center align-self-end">
+    XLS
+    <i class="fa-solid fa-file-export ms-2"></i>
+  </button>
+  
+  <div class="card">
+    <h5 class="card-header">Blogs List</h5>
+    <div class="card-body content-center">
+      <div *ngIf="isBlogLoading" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <table
+        *ngIf="!isBlogLoading"
+        mat-table
+        [dataSource]="blogDatasource"
+        matSort
+      >
+        <ng-container matColumnDef="Name">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="wv-55 fw-bold px-2"
+          >
+            Blog Name
+          </th>
+          <td mat-cell *matCellDef="let element" class="wv-55 px-2">
+            {{ element.name }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Description">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="px-2 fw-bold"
+          >
+            Description
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.description }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="CreatedDate">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="px-2 fw-bold"
+          >
+            Created Date
+          </th>
+          <td *matCellDef="let element" mat-cell class="px-2">
+            {{ element && element.createdDate | date: "dd/MM/yyyy" }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Id">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="px-2 fw-bold text-center"
+          >
+            Contributions
+          </th>
+          <td *matCellDef="let element" mat-cell class="px-2">
+            <div class="d-flex justify-content-center gap-3">
+              <mat-icon
+                class="mat-18 text-success cursor-pointer"
+                (click)="addcontrib(element)"
+              >
+                add_circle_outline
+              </mat-icon>
+  
+              <mat-icon
+                class="mat-18 text-primary cursor-pointer"
+                (click)="viewContributions(element)"
+              >
+                visibility
+              </mat-icon>
+            </div>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="authorsColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: authorsColumns"></tr>
+      </table>
     </div>
-    <table
-      *ngIf="!isBlogLoading"
-      mat-table
-      [dataSource]="blogDatasource"
-      matSort
-    >
-      <ng-container matColumnDef="Name">
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header
-          class="wv-55 fw-bold px-2"
-        >
-          Blog Name
-        </th>
-        <td mat-cell *matCellDef="let element" class="wv-55 px-2">
-          {{ element.name }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="Description">
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header
-          class="px-2 fw-bold"
-        >
-          Description
-        </th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.description }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="CreatedDate">
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header
-          class="px-2 fw-bold"
-        >
-          Created Date
-        </th>
-        <td *matCellDef="let element" mat-cell class="px-2">
-          {{ element && element.createdDate | date: "dd/MM/yyyy" }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="Id">
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          mat-sort-header
-          class="px-2 fw-bold text-center"
-        >
-          Contributions
-        </th>
-        <td *matCellDef="let element" mat-cell class="px-2">
-          <div class="d-flex justify-content-center gap-3">
-            <mat-icon
-              class="mat-18 text-success cursor-pointer"
-              (click)="addcontrib(element)"
-            >
-              add_circle_outline
-            </mat-icon>
-
-            <mat-icon
-              class="mat-18 text-primary cursor-pointer"
-              (click)="viewContributions(element)"
-            >
-              visibility
-            </mat-icon>
-          </div>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="authorsColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: authorsColumns"></tr>
-    </table>
   </div>
+  
 </div>

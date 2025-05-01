@@ -28,4 +28,14 @@ export class BlogService {
     const url = environment.apiEndpoint + "/Blogs/GetFile?filename=" + filename;
     return this.httpClient.get(url, { responseType: "blob" });
   }
+
+  
+  exportBlogsDataXLS() {
+    return this.httpClient.get<any>(
+      environment.apiEndpoint + "/Blogs/ExportXLS",
+      { responseType: "blob" as "json" },
+    );
+  }
+
+  
 }
