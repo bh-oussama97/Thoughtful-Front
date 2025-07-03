@@ -70,7 +70,7 @@ export class BlogsListComponent implements OnInit {
   }
   viewContributions(element) {
     this.dialog.open(ViewContributionsModalComponent, {
-      width: "600px",
+      width: "900px",
       data: { contributors: element.contributors }
     });
   }

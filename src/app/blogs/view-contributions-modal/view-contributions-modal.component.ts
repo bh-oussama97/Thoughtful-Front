@@ -20,8 +20,9 @@ export class ViewContributionsModalComponent implements OnInit {
     private blogService: BlogService,
     public dialogRef: MatDialogRef<AddContributionModalComponent>
   ) {}
-  ngOnInit(): void {}
-  downloadFile(filename: string) {
+  ngOnInit(): void {
+  }
+  downloadFile(filename: string) {    
     this.isLoading = true;
 
     this.timer = setTimeout(() => {
@@ -36,4 +37,20 @@ export class ViewContributionsModalComponent implements OnInit {
         });
     }, 2000);
   }
+  getIconClass(extension) {    
+  switch (extension.toLowerCase()) {
+    case 'pdf': return 'fa-solid fa-3x fa-file-pdf text-danger';
+    case 'doc':
+    case 'docx': return 'fa-solid fa-3x fa-file-word text-primary';
+    case 'xls':
+    case 'xlsx': return 'fa-solid fa-3x fa-file-excel text-success';
+    case 'jpg':
+    case 'png':
+    case 'jpeg': return 'fa-solid fa-3x fa-file-image text-warning';
+    case 'zip':
+    case 'rar': return 'fa-solid fa-3x fa-file-zipper text-secondary';
+    default: return 'fa-solid fa-3x fa-file text-muted';
+  }
+  
+}
 }

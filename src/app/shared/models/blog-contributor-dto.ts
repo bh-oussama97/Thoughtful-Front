@@ -8,4 +8,5 @@ export interface BlogContributorDto {
   contributionDate: string;
   user: UserGetDTO;
   image: string;
+  extension:string;
 }

@@ -1,8 +1,12 @@
 <div class="card">
   <div class="card-header">
     <div class="d-flex justify-content-between align-items-center">
-      <h5 class="card-title">Contributions</h5>
-
+      <div class="d-flex align-items-center gap-2">
+        <h5>Contributions</h5>
+        <span class="badge badge-pill badge-warning bg-warning text-dark">
+          {{ data.contributors.length }}
+        </span>
+      </div>
       <button mat-icon-button class="small" (click)="this.dialogRef.close()">
         <i class="material-icons fs-4">close</i>
       </button>
@@ -15,27 +19,39 @@
       </div>
     </div>
 
-    <div *ngIf="!isLoading">
-      <div
-        *ngFor="let contrib of data.contributors"
-        class="mb-3 border p-3 rounded"
-      >
-        <p>
-          <strong>Note:</strong>
-          {{ contrib.note }}
-        </p>
-        <p>
-          <strong>Date:</strong>
-          {{ contrib.contributionDate | date: "dd/MM/yyyy" }}
-        </p>
+    <div *ngIf="!isLoading" class="d-flex flex-row flex-wrap gap-3">
+      <div *ngFor="let contrib of data.contributors">
+        <div class="card flex-row align-items-center" style="width: 24rem">
+          <div class="p-3">
+            <i [ngClass]="getIconClass(contrib.extension)"></i>
+          </div>
+          <div class="card-body">
+            <p
+              class="card-title mb-1 fw-bold d-inline-block text-truncate"
+              style="max-width: 150px"
+            >
+              {{ contrib.filename }}
+            </p>
+            <p class="card-text small m-0">
+              Uploaded on
+              {{ contrib.contributionDate | date : "dd/MM/yyyy hh:mm a" }}
+            </p>
+            <p class="card-text small m-0">
+              Uploaded by
+              {{ contrib.user.userName }}
+            </p>
+            <div
+              class="d-flex gap-2 align-items-center justify-content-between"
+            >
+              <p class="card-text small m-0">{{ contrib.note }}</p>
 
-        <div
-          class="d-flex gap-2 cursor-pointer text-primary align-items-baseline"
-        >
-          <i class="fa fa-download"></i>
-          <a (click)="downloadFile(contrib.filename)">
-            <p>{{ contrib.filename }}</p>
-          </a>
+              <div class="cursor-pointer text-primary align-items-baseline">
+                <a (click)="downloadFile(contrib.filename)">
+                  <i class="fa fa-download"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div *ngIf="this.data.contributors.length === 0">
