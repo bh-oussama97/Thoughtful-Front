@@ -33,7 +33,7 @@
       <div class="input-group">
         <input
           placeholder="Enter password"
-          [type]="fieldTextType ? 'text' : 'password'"
+          [type]="passwordTextType ? 'text' : 'password'"
           class="form-control bg-light mt-2"
           formControlName="password"
           name="password"
@@ -43,10 +43,10 @@
             <i
               class="fa"
               [ngClass]="{
-                'fa-eye-slash': !fieldTextType,
-                'fa-eye': fieldTextType
+                'fa-eye-slash': !passwordTextType,
+                'fa-eye': passwordTextType
               }"
-              (click)="toggleFieldTextType()"
+              (click)="togglePassword()"
             ></i>
           </span>
         </div>
@@ -67,7 +67,7 @@
       <div class="input-group">
         <input
           placeholder="Enter Confirm Password"
-          [type]="fieldTextType ? 'text' : 'password'"
+          [type]="newPasswordTextType ? 'text' : 'password'"
           class="form-control bg-light mt-2"
           formControlName="confirmPassword"
           name="password"
@@ -77,24 +77,14 @@
             <i
               class="fa"
               [ngClass]="{
-                'fa-eye-slash': !fieldTextType,
-                'fa-eye': fieldTextType
+                'fa-eye-slash': !newPasswordTextType,
+                'fa-eye': newPasswordTextType
               }"
-              (click)="toggleFieldTextType()"
+              (click)="toggleNewPassword()"
             ></i>
           </span>
         </div>
       </div>
-
-      <!-- <label for="exampleInputPassword1">Confirm password</label>
-            <input
-              type="password"
-              class="form-control"
-              formControlName="confirmPassword"
-              
-              placeholder="Confirm Password"
-              name="password" 
-            /> -->
       <div
         *ngIf="registrationForm.hasError('passwordMismatch')"
         class="text-danger"

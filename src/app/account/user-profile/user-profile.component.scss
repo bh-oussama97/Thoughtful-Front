@@ -1,0 +1,21 @@
+ ::ng-deep xng-breadcrumb {
+        align-self: self-start;
+        .xng-breadcrumb-root {
+            .xng-breadcrumb-list {
+                .xng-breadcrumb-item {
+                    .xng-breadcrumb-trail {
+                        gap: 10px !important;
+                    }
+                }
+            }
+        }
+    }
+
+
+.avatar-img {
+  width: 200px;        /* Set desired width */
+  height: 200px;       /* Set desired height */
+  object-fit: cover;   /* Ensures image covers container without distortion */
+  border-radius: 50%;  /* Makes it circular */
+  border: 2px solid #ccc;
+}

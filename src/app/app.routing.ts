@@ -8,6 +8,7 @@ import { AuthorsListComponent } from "./authors/authors-list/authors-list.compon
 import { AuthGuardService } from "./shared/guards/auth.guard";
 import { LoginGuard } from "./shared/guards/login.guard";
 import { HomeComponent } from "./home/home.component";
+import { UserProfileComponent } from "./account/user-profile/user-profile.component";
 
 const routes: Routes = [
   {
@@ -34,6 +35,17 @@ const routes: Routes = [
     path: "authors",
     component: AuthorsListComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path :"user-profile",
+    component : UserProfileComponent,
+    canActivate : [AuthGuardService],
+     data: {
+        breadcrumb: {
+          label: 'User Profile',
+          info: 'home',
+        }
+      }
   },
   { path: "", redirectTo: "home", pathMatch: "full" }
 ];

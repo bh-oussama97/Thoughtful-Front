@@ -8,7 +8,7 @@ import { ErrorHandlerDialogComponent } from "../components/error-handler-dialog/
 export class DialogService {
   constructor(private dialog: MatDialog, private zone: NgZone) {}
 
-  openServerErrorDialog(message: string, title: string) {
+  openServerErrorDialog(message: string, title?: string) {
     this.zone.run(() => {
       this.dialog.open(ErrorHandlerDialogComponent, {
         data: { message, title },

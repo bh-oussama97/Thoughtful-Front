@@ -16,6 +16,8 @@ import { ErrorHandlerDialogComponent } from "./components/error-handler-dialog/e
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { MatMenuModule } from "@angular/material/menu";
 import { YesNoConfirmComponent } from "./components/yes-no-confirm/yes-no-confirm.component";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import {BreadcrumbModule} from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { YesNoConfirmComponent } from "./components/yes-no-confirm/yes-no-confir
     MatButtonModule,
     MatDialogModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    FontAwesomeModule,
+    BreadcrumbModule
   ],
   exports: [
     HeaderComponent,
@@ -50,7 +54,8 @@ import { YesNoConfirmComponent } from "./components/yes-no-confirm/yes-no-confir
     MatButtonModule,
     MatDialogModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    BreadcrumbModule
   ],
   providers: [JwtHelperService]
 })

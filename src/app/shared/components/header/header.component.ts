@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { UsersService } from "../../services/users.service";
 import { Router } from "@angular/router";
 import { UserGetDTO } from "../../models/user-get-dto";
+import { faArrowRightFromBracket, faGear, faUser } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "header",
@@ -10,6 +11,10 @@ import { UserGetDTO } from "../../models/user-get-dto";
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   user: UserGetDTO | null = null;
+    faSettings = faGear;
+      faUser = faUser;
+  faLogout = faArrowRightFromBracket;
+
   constructor(private usersService: UsersService, private router: Router) {}
   ngAfterViewInit(): void {
     const navItems = document.querySelectorAll<HTMLLIElement>(

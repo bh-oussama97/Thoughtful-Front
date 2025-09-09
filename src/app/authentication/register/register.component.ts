@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
   isLoading: boolean = false;
   timer: any = 0;
-  fieldTextType: boolean = false;
+  passwordTextType: boolean = false;
+newPasswordTextType: boolean = false;
 
   constructor(
     private dialogService: DialogService,
@@ -84,7 +85,10 @@ export class RegisterComponent implements OnInit {
     const confirmPassword = group.get("confirmPassword")?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
-  toggleFieldTextType() {
-    this.fieldTextType = !this.fieldTextType;
+  togglePassword() {
+    this.passwordTextType = !this.passwordTextType;
+  }
+  toggleNewPassword() {
+    this.newPasswordTextType = !this.newPasswordTextType;
   }
 }

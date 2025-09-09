@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { UserGetDTO } from "../models/user-get-dto";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { RegisterDTO } from "../models/register-dto";
+import { UserProfileDto } from "../models/user-profile-dto";
 
 @Injectable({
   providedIn: "root"
@@ -32,24 +33,19 @@ export class UsersService {
       request
     );
   }
+  saveProfileInformations(request:any): Observable<ResultResponse<UserGetDTO>> {
+    return this.httpClient.post<ResultResponse<UserGetDTO>>(
+      environment.apiEndpoint + "/Users/SaveUserProfileInformations",
+      request
+    );
+  }
 
-  // saveLoginInfos(usersData: UserGetDTO) {
-  //   const userJson = JSON.stringify(usersData);
-  //   localStorage.setItem('userJson', userJson);
-  // }
-  // getLoginInfo(): UserGetDTO {
-  //   const userJson = localStorage.getItem('userJson');
-  //   return JSON.parse(userJson);
-  // }
-  // logout() {
-  //   localStorage.clear();
-  // }
-  // setToken(token: string) {
-  //   localStorage.setItem('Token', token);
-  // }
-  // getToken() {
-  //   return localStorage.getItem('Token');
-  // }
+  getUserData():Observable<ResultResponse<UserGetDTO>>
+  {
+return this.httpClient.get<ResultResponse<UserGetDTO>>(
+      environment.apiEndpoint + "/Users/GetUserData");
+  }
+
   save_login_info(user: UserGetDTO) {
     localStorage.setItem("user", JSON.stringify(user));
     this.userSubject.next(user);
@@ -76,10 +72,12 @@ export class UsersService {
     this.userSubject.next(null);
   }
 
-  private loadUser() {
+  loadUser() {
     const user = localStorage.getItem("user");
     if (user) {
       this.userSubject.next(JSON.parse(user));
     }
   }
+
+
 }

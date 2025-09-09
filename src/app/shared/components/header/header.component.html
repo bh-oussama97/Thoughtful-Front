@@ -61,15 +61,41 @@
         </li>
 
         <li
-          class="nav-item text-white d-none d-lg-flex align-items-center gap-2"
+          class="nav-item text-white d-none d-lg-flex align-items-center gap-2 transparent-bg"
           *ngIf="user"
         >
           <i class="fa fa-user" aria-hidden="true"></i>
           Welcome, {{ user.userName }}
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="text-white">
+            <mat-icon style="height: 22px; width: 22px">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="transparent-menu">
+            <button mat-menu-item>
+              <div class="d-flex align-items-center gap-2">
+                <fa-icon [icon]="faSettings"></fa-icon>
 
-          <a href="" class="nav-link text-white" (click)="logout()">
-            <i class="fa fa-sign-out" aria-hidden="true"></i>
-          </a>
+                <span>Settings</span>
+              </div>
+            </button>
+            <button mat-menu-item [routerLink]="['user-profile']">
+              <div class="d-flex align-items-center gap-2">
+                <fa-icon [icon]="faUser"></fa-icon>
+
+                <span>Profile</span>
+              </div>
+            </button>
+            <button
+              mat-menu-item
+              class="d-flex gap-2 text-black"
+              (click)="logout()"
+            >
+              <div class="d-flex align-items-center gap-2">
+                <fa-icon [icon]="faLogout"></fa-icon>
+
+                <span>Logout</span>
+              </div>
+            </button>
+          </mat-menu>
         </li>
       </ul>
 

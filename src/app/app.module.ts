@@ -25,10 +25,11 @@ import { AddContributionModalComponent } from "./blogs/add-contribution-modal/ad
 import { ViewContributionsModalComponent } from "./blogs/view-contributions-modal/view-contributions-modal.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { HomeComponent } from "./home/home.component";
+import { UserProfileComponent } from './account/user-profile/user-profile.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
-}
+  }
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
     tokenGetter: tokenGetter
@@ -50,7 +51,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     EditArticleModalComponent,
     AddContributionModalComponent,
     ViewContributionsModalComponent,
-    HomeComponent
+    HomeComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
