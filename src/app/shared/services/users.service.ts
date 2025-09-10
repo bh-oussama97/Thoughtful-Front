@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { LoginRequestDTO } from "../models/login-request-dto";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, tap } from "rxjs";
 import { ResultResponse } from "../models/result-response";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
@@ -40,10 +40,21 @@ export class UsersService {
     );
   }
 
-  getUserData():Observable<ResultResponse<UserGetDTO>>
-  {
-return this.httpClient.get<ResultResponse<UserGetDTO>>(
-      environment.apiEndpoint + "/Users/GetUserData");
+  getUserData() {
+    return this.httpClient.get<ResultResponse<UserGetDTO>>(environment.apiEndpoint + "/Users/GetUserData").pipe(
+      tap((response) => {
+        if (response.isSuccess) {
+          this.userSubject.next(response.body); // keep latest user data
+        }
+      })
+    );
+  }
+
+    updateAvatar(newAvatarUrl: string) {
+    const currentUser = this.userSubject.value;
+    if (currentUser) {
+      this.userSubject.next({ ...currentUser, avatar: newAvatarUrl });
+    }
   }
 
   save_login_info(user: UserGetDTO) {

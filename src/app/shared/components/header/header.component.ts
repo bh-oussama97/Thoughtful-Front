@@ -2,7 +2,12 @@ import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { UsersService } from "../../services/users.service";
 import { Router } from "@angular/router";
 import { UserGetDTO } from "../../models/user-get-dto";
-import { faArrowRightFromBracket, faGear, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRightFromBracket,
+  faGear,
+  faUser
+} from "@fortawesome/free-solid-svg-icons";
+import { ResultResponse } from "../../models/result-response";
 
 @Component({
   selector: "header",
@@ -11,10 +16,10 @@ import { faArrowRightFromBracket, faGear, faUser } from "@fortawesome/free-solid
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   user: UserGetDTO | null = null;
-    faSettings = faGear;
-      faUser = faUser;
+  faSettings = faGear;
+  faUser = faUser;
   faLogout = faArrowRightFromBracket;
-
+  avatarUrl :string ='./../../../assets/images/img_avatar.png';
   constructor(private usersService: UsersService, private router: Router) {}
   ngAfterViewInit(): void {
     const navItems = document.querySelectorAll<HTMLLIElement>(
@@ -29,9 +34,18 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit(): void {
-    this.usersService.user$.subscribe((user) => {
+    // First load
+  this.usersService.getUserData().subscribe();
+
+  // Reactively listen for changes
+  this.usersService.user$.subscribe((user) => {
+    console.log("user in header",user);
+    
+    if (user) {
       this.user = user;
-    });
+      this.avatarUrl = user.avatar ?? './../../../assets/images/img_avatar.png';
+    }
+  });
   }
   logout() {
     this.usersService.logout();

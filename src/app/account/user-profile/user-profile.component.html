@@ -47,6 +47,7 @@
         class="form-control bg-light mt-2"
         [(ngModel)]="userProfile.newPassword"
         name="password"
+        #newPassword="ngModel"
       />
       <div class="input-group-append mt-2 d-flex">
         <span class="input-group-text">
@@ -75,6 +76,7 @@
           Save
         </span>
       </button>
+      <p-toast />
     </div>
   </div>
 

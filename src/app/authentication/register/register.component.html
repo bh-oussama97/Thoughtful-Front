@@ -1,6 +1,6 @@
 <div class="grid-container">
   <form
-    class="form"
+    class="form row col-5"
     [formGroup]="registrationForm"
     (keydown)="onRegisterSubmit($event)"
   >
@@ -92,19 +92,17 @@
         Passwords do not match.
       </div>
     </div>
-    <button
-      type="button"
-      class="btn btn-primary d-flex align-self-end"
-      (click)="register()"
-    >
-      <span
-        *ngIf="isLoading"
-        class="spinner-border spinner-border-sm"
-        role="status"
-        aria-hidden="true"
-      ></span>
-      <span *ngIf="isLoading" class="sr-only">Submit</span>
-      <span *ngIf="!isLoading">Register</span>
-    </button>
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-primary" (click)="register()">
+        <span
+          *ngIf="isLoading"
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        <span *ngIf="isLoading" class="sr-only">Submit</span>
+        <span *ngIf="!isLoading">Register</span>
+      </button>
+    </div>
   </form>
 </div>

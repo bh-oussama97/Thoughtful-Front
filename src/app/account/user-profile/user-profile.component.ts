@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import {
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { MessageService } from "primeng/api";
 import { ResultResponse } from "src/app/shared/models/result-response";
 import { UserGetDTO } from "src/app/shared/models/user-get-dto";
 import { UserProfileDto } from "src/app/shared/models/user-profile-dto";
@@ -36,7 +37,9 @@ newPasswordTextType: boolean = false;
   constructor(
     private userService: UsersService,
     private dialogService: DialogService,
-    private router: Router
+    private router: Router,
+        private messageService: MessageService,
+    
   ) {}
   ngOnInit(): void {
     this.userData = this.userService.getUser();
@@ -78,7 +81,13 @@ newPasswordTextType: boolean = false;
   setTimeout(() => {
     this.userService.saveProfileInformations(formData).subscribe({
       next: (response: ResultResponse<UserGetDTO>) => {
-        if (response.isSuccess) {
+        if (response.isSuccess === true) {
+          this.userService.updateAvatar(this.selectedFile.name);
+                    this.messageService.add({
+            severity: "success",
+            summary: "Success",
+            detail: "profile has been added successfully"
+          });
           this.router.navigate(["user-profile"]);
         } else {
           this.dialogService.openServerErrorDialog(

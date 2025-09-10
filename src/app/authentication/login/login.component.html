@@ -1,6 +1,6 @@
 <div class="grid-container">
-  <form class="form" (keydown)="onSubmit($event)">
-    <div class="form-group">
+  <form class="form row col-4" (keydown)="onSubmit($event)">
+    <div class="form-group ">
       <label for="exampleInputEmail1">Email address</label>
       <input
         type="text"
@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <label for="email">Password</label>
-      <div class="input-group">
+      <div class="input-group ">
         <input
           placeholder="Enter password"
           [type]="fieldTextType ? 'text' : 'password'"
@@ -37,9 +37,10 @@
         </div>
       </div>
     </div>
-    <button
+    <div class="d-flex justify-content-end">
+          <button
       type="button"
-      class="btn btn-primary d-flex align-self-end"
+      class="btn btn-primary"
       (click)="login()"
     >
       <span
@@ -51,5 +52,7 @@
       <span *ngIf="isLoading" class="sr-only">Submit</span>
       <span *ngIf="!isLoading">Submit</span>
     </button>
+    </div>
+
   </form>
 </div>
