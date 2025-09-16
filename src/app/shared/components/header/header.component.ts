@@ -34,18 +34,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit(): void {
-    // First load
-  this.usersService.getUserData().subscribe();
-
-  // Reactively listen for changes
-  this.usersService.user$.subscribe((user) => {
-    console.log("user in header",user);
-    
-    if (user) {
-      this.user = user;
-      this.avatarUrl = user.avatar ?? './../../../assets/images/img_avatar.png';
-    }
-  });
+     this.usersService.user$.subscribe((user) => {
+         this.user = user;
+          });
   }
   logout() {
     this.usersService.logout();

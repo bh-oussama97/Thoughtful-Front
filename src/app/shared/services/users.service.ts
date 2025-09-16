@@ -7,7 +7,6 @@ import { environment } from "src/environments/environment";
 import { UserGetDTO } from "../models/user-get-dto";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { RegisterDTO } from "../models/register-dto";
-import { UserProfileDto } from "../models/user-profile-dto";
 
 @Injectable({
   providedIn: "root"
@@ -33,24 +32,22 @@ export class UsersService {
       request
     );
   }
-  saveProfileInformations(request:any): Observable<ResultResponse<UserGetDTO>> {
+  saveProfileInformations(
+    request: any
+  ): Observable<ResultResponse<UserGetDTO>> {
     return this.httpClient.post<ResultResponse<UserGetDTO>>(
       environment.apiEndpoint + "/Users/SaveUserProfileInformations",
       request
     );
   }
 
-  getUserData() {
-    return this.httpClient.get<ResultResponse<UserGetDTO>>(environment.apiEndpoint + "/Users/GetUserData").pipe(
-      tap((response) => {
-        if (response.isSuccess) {
-          this.userSubject.next(response.body); // keep latest user data
-        }
-      })
+  getUserData(): Observable<ResultResponse<UserGetDTO>> {
+    return this.httpClient.get<ResultResponse<UserGetDTO>>(
+      environment.apiEndpoint + "/Users/GetUserData"
     );
   }
 
-    updateAvatar(newAvatarUrl: string) {
+  updateAvatar(newAvatarUrl: string) {
     const currentUser = this.userSubject.value;
     if (currentUser) {
       this.userSubject.next({ ...currentUser, avatar: newAvatarUrl });
@@ -89,6 +86,4 @@ export class UsersService {
       this.userSubject.next(JSON.parse(user));
     }
   }
-
-
 }
