@@ -9,6 +9,8 @@ import { AuthGuardService } from "./shared/guards/auth.guard";
 import { LoginGuard } from "./shared/guards/login.guard";
 import { HomeComponent } from "./home/home.component";
 import { UserProfileComponent } from "./account/user-profile/user-profile.component";
+import { ForgetPasswordComponent } from "./authentication/forget-password/forget-password.component";
+import { ResetPasswordComponent } from "./authentication/reset-password/reset-password.component";
 
 const routes: Routes = [
   {
@@ -21,6 +23,15 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   { path: "register", component: RegisterComponent, canActivate: [LoginGuard] },
+  {
+    path: "forget-password",
+    component: ForgetPasswordComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: "reset-password/:email",
+    component: ResetPasswordComponent,
+  },
   {
     path: "articles",
     component: ArticlesListComponent,
@@ -37,15 +48,15 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path :"user-profile",
-    component : UserProfileComponent,
-    canActivate : [AuthGuardService],
-     data: {
-        breadcrumb: {
-          label: 'User Profile',
-          info: 'home',
-        }
+    path: "user-profile",
+    component: UserProfileComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      breadcrumb: {
+        label: "User Profile",
+        info: "home"
       }
+    }
   },
   { path: "", redirectTo: "home", pathMatch: "full" }
 ];

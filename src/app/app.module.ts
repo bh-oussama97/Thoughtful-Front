@@ -26,6 +26,8 @@ import { ViewContributionsModalComponent } from "./blogs/view-contributions-moda
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { HomeComponent } from "./home/home.component";
 import { UserProfileComponent } from './account/user-profile/user-profile.component';
+import { ForgetPasswordComponent } from './authentication/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
 
 export function tokenGetter() {
   return localStorage.getItem("Token");
@@ -52,7 +54,9 @@ const JWT_Module_Options: JwtModuleOptions = {
     AddContributionModalComponent,
     ViewContributionsModalComponent,
     HomeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

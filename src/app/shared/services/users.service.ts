@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { UserGetDTO } from "../models/user-get-dto";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { RegisterDTO } from "../models/register-dto";
+import { ResetPasswordDTO } from "../models/reset-password-dto";
 
 @Injectable({
   providedIn: "root"
@@ -15,8 +16,7 @@ export class UsersService {
   private userSubject = new BehaviorSubject<UserGetDTO | null>(null);
   user$ = this.userSubject.asObservable();
   constructor(
-    private httpClient: HttpClient,
-    private jwtHelper: JwtHelperService
+    private httpClient: HttpClient
   ) {
     this.loadUser();
   }
@@ -44,6 +44,19 @@ export class UsersService {
   getUserData(): Observable<ResultResponse<UserGetDTO>> {
     return this.httpClient.get<ResultResponse<UserGetDTO>>(
       environment.apiEndpoint + "/Users/GetUserData"
+    );
+  }
+  SendPasswordResetCode(email: string): Observable<ResultResponse<string>> {
+    return this.httpClient.post<ResultResponse<string>>(
+      `${environment.apiEndpoint}/Users/SendPasswordResetCode?email=${email}`,
+      null
+    );
+  }
+
+  ResetPassword(data: ResetPasswordDTO): Observable<ResultResponse<string>> {
+    return this.httpClient.post<ResultResponse<string>>(
+      `${environment.apiEndpoint}/Users/ResetPassword`,
+      data
     );
   }
 

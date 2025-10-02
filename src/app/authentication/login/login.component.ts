@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private router: Router,
-    private dialogService: DialogService
+    private dialogService: DialogService,
   ) {}
   ngOnInit(): void {}
   onSubmit(event: any) {
@@ -56,5 +56,8 @@ export class LoginComponent implements OnInit {
   }
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
+  }
+  forgetPassword(){
+    this.router.navigate(['forget-password']);
   }
 }
