@@ -47,7 +47,8 @@ export class AddContributionModalComponent {
             this.messageService.add({
               severity: "success",
               summary: "Success",
-              detail: response.body
+              detail: response.body,
+                          life: 3000
             });
             if (this.timer) {
               clearTimeout(this.timer);

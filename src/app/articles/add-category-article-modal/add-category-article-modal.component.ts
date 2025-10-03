@@ -62,7 +62,9 @@ export class AddCategoryArticleModalComponent implements OnInit {
             this.messageService.add({
               severity: "success",
               summary: "Success",
-              detail: "Category has been added successfully"
+              detail: "Category has been added successfully",
+                          life: 3000
+
             });
             if (this.timer) {
               clearTimeout(this.timer);

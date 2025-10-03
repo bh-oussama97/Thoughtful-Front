@@ -83,12 +83,15 @@ newPasswordTextType: boolean = false;
       next: (response: ResultResponse<UserGetDTO>) => {
         if (response.isSuccess === true) {
           this.userService.updateAvatar(this.selectedFile.name);
-                    this.messageService.add({
+              this.messageService.add({
             severity: "success",
             summary: "Success",
-            detail: "profile has been added successfully"
+            detail: "profile has been added successfully",
+            life: 3000
           });
+       setTimeout(() => {
           this.router.navigate(["user-profile"]);
+          }, 3000);
         } else {
           this.dialogService.openServerErrorDialog(
             response.error.message,

@@ -24,7 +24,6 @@ export class ResetPasswordComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.email = this.activatedRoute.snapshot.params["email"];
-    console.log(" this.email", this.email);
   }
   togglePassword() {
     this.newPasswordTextType = !this.newPasswordTextType;
@@ -36,27 +35,30 @@ export class ResetPasswordComponent implements OnInit {
       NewPassword: this.newPassword,
       Otp: this.code
     };
-    setTimeout(() => {
-      this.userService
-        .ResetPassword(resetPassword)
-        .subscribe((result: ResultResponse<string>) => {
-          if (result.isSuccess === true) {
-            this.messageService.add({
-              severity: "success",
-              summary: "Success",
-              detail: result.body
-            });
+    this.userService
+      .ResetPassword(resetPassword)
+      .subscribe((result: ResultResponse<string>) => {
+        if (result.isSuccess === true) {
+          this.messageService.add({
+            severity: "success",
+            summary: "Success",
+            detail: result.body,
+            life: 3000
+          });
+
+          setTimeout(() => {
             this.router.navigate([`login`]);
-          } else {
-            this.messageService.add({
-              severity: "error",
-              summary: "Error",
-              detail: result.body
-            });
-          }
-          this.isLoading = false;
-        });
-    }, 3000);
+          }, 3000);
+        } else {
+          this.messageService.add({
+            severity: "error",
+            summary: "Error",
+            detail: result.body,
+            life: 2000
+          });
+        }
+        this.isLoading = false;
+      });
   }
   isPasswordInvalid(password: string): boolean {
     if (!password) {

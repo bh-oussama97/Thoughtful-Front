@@ -84,10 +84,11 @@ export class AddArticleModalComponent implements OnInit {
       .addArticle(this.request)
       .subscribe((response: ResultResponse<ArticleGetDto>) => {
         if (response.isSuccess === true) {
-          this.messageService.add({
+                        this.messageService.add({
             severity: "success",
             summary: "Success",
-            detail: "Article has been added successfully"
+            detail: "Article has been added successfully",
+            life: 3000
           });
           this.dialogRef.close(true);
         } else {

@@ -60,7 +60,8 @@ export class AddAuthorArticleModalComponent implements OnInit {
             this.messageService.add({
               severity: "success",
               summary: "Success",
-              detail: "Author has been added successfully"
+              detail: "Author has been added successfully",
+                          life: 3000
             });
             if (this.timer) {
               clearTimeout(this.timer);

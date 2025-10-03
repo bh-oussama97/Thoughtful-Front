@@ -1,40 +1,92 @@
-<h2>Overview</h2>
-<p>
-  <strong>ThoughtFul</strong>
-  is a basic application for a blogging platform, designed using
-  <strong>.NET 6 WEB API</strong>
-  style. It's clean, modern, and built for developers who value simplicity and
-  vertical feature organization.
-</p>
+<div class="p-6">
+  <section class="overview mb-8">
+    <h2>
+      <i class="pi pi-book mr-2"></i>
+      Overview
+    </h2>
+    <p class="text-lg mt-2">
+      <strong>ThoughtFul</strong>
+      is a modern blogging platform for exploring
+      <strong>blogs</strong>
+      ,
+      <strong>articles</strong>
+      , and
+      <strong>authors</strong>
+      . It provides a simple and engaging experience for both readers and
+      contributors.
+    </p>
+    <img
+      src="assets/images/blogging.svg"
+      alt="Blogging Illustration"
+      class="overview-img"
+    />
+  </section>
 
-<h2>Architecture Highlights</h2>
-<ul>
-  <li>Vertical slices architecture (feature-based organization)</li>
-  <li>
-    CQRS pattern using
-    <code>MediatR</code>
-  </li>
-  <li>Auto-registered modules per feature</li>
-  <li>
-    DTO mapping with
-    <code>AutoMapper</code>
-  </li>
-  <li>Rich domain model (to a degree)</li>
-  <li>
-    No repositories or service layers – logic in
-    <code>IRequestHandler</code>
-  </li>
-</ul>
+  <section class="features mb-10 mt-4">
+    <h2 class="">
+      <i class="pi pi-star mr-2"></i>
+      What You Can Do
+    </h2>
+    <div class="grid py-4">
+      <div class="col-12 md:col-4 ps-4">
+        <div class="d-flex align-items-center gap-3">
+          <i class="pi pi-comments text-4xl text-primary"></i>
+          <h3>Contribute</h3>
+        </div>
 
-<h2>Getting Started</h2>
-<ol>
-  <li>
-    Provide a connection string in
-    <code>appsettings.json</code>
-  </li>
-  <li>
-    Run the following to apply migrations:
-    <code>Update-Database</code>
-  </li>
-  <li>Run the application</li>
-</ol>
+        <p>
+          Join discussions in blogs by leaving
+          <strong>comments</strong>
+          or sharing
+          <strong>images and files</strong>
+          .
+        </p>
+      </div>
+      <div class="col-12 md:col-4 ps-4">
+        <div class="d-flex mt-3 align-items-center gap-3">
+          <i class="pi pi-book text-4xl text-success"></i>
+          <h3 class="mt-3">Explore Articles</h3>
+        </div>
+
+        <p>
+          Discover
+          <strong>articles</strong>
+          organized by categories for easy navigation and meaningful reading.
+        </p>
+      </div>
+      <div class="col-12 md:col-4 ps-4">
+        <div class="d-flex mt-3 align-items-center gap-3">
+          <i class="pi pi-user text-4xl text-info"></i>
+          <h3 class="mt-3">Authors</h3>
+        </div>
+
+        <p>
+          Learn more about
+          <strong>authors</strong>
+          and the content they contribute to the platform.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="why p-6 border-round shadow-2">
+    <h2>
+      <i class="pi pi-heart mr-2"></i>
+      Why ThoughtFul?
+    </h2>
+    <p class="text-lg mt-3">
+      <strong>ThoughtFul</strong>
+      is built to encourage
+      <strong>knowledge sharing</strong>
+      and
+      <strong>collaboration</strong>
+      . Whether you’re writing articles, contributing to blogs, or exploring
+      categories, it keeps you engaged with valuable content.
+    </p>
+    <img
+      src="assets/images/collaboration.svg"
+      alt="Collaboration Illustration"
+      class="why-img"
+    />
+  </section>
+</div>

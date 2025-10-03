@@ -25,28 +25,35 @@ export class ForgetPasswordComponent implements OnInit {
       this.forgetPassword();
     }
   }
-  forgetPassword() {
-    this.isLoading = true;
-    setTimeout(() => {
-      this.userService
-        .SendPasswordResetCode(this.selectedEmail)
-        .subscribe((result: ResultResponse<string>) => {
-          if (result.isSuccess === true) {
-            this.messageService.add({
-              severity: "success",
-              summary: "Success",
-              detail: result.body
-            });
-            this.router.navigate([`reset-password/${this.selectedEmail}`]);
-          } else {
-            this.messageService.add({
-              severity: "error",
-              summary: "Error",
-              detail: result.body
-            });
-          }
-          this.isLoading = false;
+forgetPassword() {
+  this.isLoading = true;
+
+  this.userService
+    .SendPasswordResetCode(this.selectedEmail)
+    .subscribe((result: ResultResponse<string>) => {
+      if (result.isSuccess === true) {
+        this.messageService.add({
+          severity: "success",
+          summary: "Success",
+          detail: result.body,
+          life: 3000 
         });
-    }, 2000);
-  }
+
+        setTimeout(() => {
+          this.router.navigate([`reset-password/${this.selectedEmail}`]);
+        }, 3000);
+
+      } else {
+        this.messageService.add({
+          severity: "error",
+          summary: "Error",
+          detail: result.body,
+          life: 2000 
+        });
+      }
+
+      this.isLoading = false;
+    });
+}
+
 }

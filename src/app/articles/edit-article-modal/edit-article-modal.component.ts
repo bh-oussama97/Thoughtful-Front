@@ -109,7 +109,9 @@ export class EditArticleModalComponent implements OnInit {
           this.messageService.add({
             severity: "success",
             summary: "Success",
-            detail: "Article has been updated successfully"
+            detail: "Article has been updated successfully",
+                        life: 3000
+
           });
           this.dialogRef.close(true);
         } else {

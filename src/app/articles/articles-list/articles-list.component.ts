@@ -158,7 +158,8 @@ export class ArticlesListComponent implements OnInit, AfterViewInit {
                 this.messageService.add({
                   severity: "success",
                   summary: "Success",
-                  detail: response.body
+                  detail: response.body,
+                              life: 3000
                 });
                 this.loadArticles();
               } else {
